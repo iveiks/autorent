@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.4
+    restart: always
+    environment:
+      MYSQL_DATABASE: car_rent
+      MYSQL_ROOT_PASSWORD: Passw0rd
+      MYSQL_USER: boss
+      MYSQL_PASSWORD: Passw0rd
+    volumes:
+      - ./db/cars_rent.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+
+volumes:
+  db_data:
