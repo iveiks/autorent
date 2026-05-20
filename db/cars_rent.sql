@@ -69,7 +69,8 @@ CREATE TABLE `cars` (
   `seats` int(1) NOT NULL,
   `description` varchar(255) NOT NULL,
   `status` enum('vaba','broneeritud','hoolduses') NOT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1117,30 +1118,7 @@ CREATE TABLE `rentals` (
   CONSTRAINT `rentals_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Tabeli struktuur tabelile `cars`
---
-
-
---
--- Indeksid tõmmistatud tabelitele
---
-
---
--- Indeksid tabelile `cars`
---
-ALTER TABLE `cars`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT tõmmistatud tabelitele
---
-
---
--- AUTO_INCREMENT tabelile `cars`
---
-ALTER TABLE `cars`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
+ALTER TABLE `cars` AUTO_INCREMENT=1002;
 COMMIT;
 SET FOREIGN_KEY_CHECKS = 1;
 
