@@ -50,13 +50,6 @@ Administraatori paneelile pääsemiseks kasuta järgmisi andmeid:
 *   **Kasutajanimi**: `boss`
 *   **Parool**: `Passw0rd`
 
-Juba olemasolevad kliendikontod:
-*   **Kasutajanimi**: `andur`
-*   **Parool**: `Passw0rd`
-
-*   **Kasutajanimi**: `pistik`
-*   **Parool**: `Passw0rd`
-
 Kliendid saavad luua oma konto avalehel asuva nupu **Registreeri** kaudu.
 
 ## 📝 Litsents
