@@ -57,44 +57,6 @@ CREATE TABLE `clients` (
 INSERT INTO `users` (`username`, `password_hash`) VALUES
 ('boss', '$2a$12$51YfGnI9J/DrbXVoMgdyoeikD9qAJFsKcuR2fLTBGItYoNpoDCMne'); -- Password: Passw0rd
 
---
--- Tabeli struktuur tabelile `favourites`
---
-
-CREATE TABLE `favourites` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `client_id` int(11) NOT NULL,
-  `car_id` int(4) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `client_id` (`client_id`),
-  KEY `car_id` (`car_id`),
-  CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `favourites_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tabeli struktuur tabelile `rentals`
---
-
-CREATE TABLE `rentals` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `client_id` int(11) NOT NULL,
-  `car_id` int(4) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `total_price` int(10) DEFAULT NULL,
-  `status` enum('active','cancelled','completed') NOT NULL DEFAULT 'active',
-  PRIMARY KEY (`id`),
-  KEY `client_id` (`client_id`),
-  KEY `car_id` (`car_id`),
-  CONSTRAINT `rentals_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `rentals_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tabeli struktuur tabelile `cars`
---
-
 CREATE TABLE `cars` (
   `id` int(4) NOT NULL,
   `mark` varchar(255) NOT NULL,
@@ -1119,6 +1081,46 @@ INSERT INTO `cars` (`id`, `mark`, `model`, `engine`, `fuel`, `price`, `year`, `t
 (999, 'Jeep', 'Wrangler', 'Rotary', 'diesel', 115, 2007, 'poolautomaat', 3, 'non velit donec diam neque vestibulum eget vulputate ut ultrices', 'vaba', 'http://dummyimage.com/179x167.png/cc0000/ffffff'),
 (1000, 'Ford', 'Taurus', 'Diesel', 'electric', 59, 1984, 'automaat', 9, 'pulvinar lobortis est phasellus sit amet erat nulla', 'hoolduses', 'http://dummyimage.com/236x231.png/ff4444/ffffff'),
 (1001, 'Audi', 'Coupe GT', 'Inline-6', 'electric', 84, 0, 'automaat', 0, '', 'vaba', 'http://dummyimage.com/117x212.png/5fa2dd/ffffff');
+
+
+--
+-- Tabeli struktuur tabelile `favourites`
+--
+
+CREATE TABLE `favourites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_id` int(11) NOT NULL,
+  `car_id` int(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_id` (`client_id`),
+  KEY `car_id` (`car_id`),
+  CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `favourites_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tabeli struktuur tabelile `rentals`
+--
+
+CREATE TABLE `rentals` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_id` int(11) NOT NULL,
+  `car_id` int(4) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `total_price` int(10) DEFAULT NULL,
+  `status` enum('active','cancelled','completed') NOT NULL DEFAULT 'active',
+  PRIMARY KEY (`id`),
+  KEY `client_id` (`client_id`),
+  KEY `car_id` (`car_id`),
+  CONSTRAINT `rentals_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `rentals_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tabeli struktuur tabelile `cars`
+--
+
 
 --
 -- Indeksid tõmmistatud tabelitele
