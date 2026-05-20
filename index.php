@@ -23,18 +23,30 @@
         mysqli_stmt_bind_param($stmt, "sii", $otsing, $limit, $offset);
         mysqli_stmt_execute($stmt);
         $valjund = mysqli_stmt_get_result($stmt);
+        if (!$valjund) {
+            die("Andmebaasi viga autode otsingupäringul: " . mysqli_error($yhendus));
+        }
 
         // Koguarvu päring lehekülgede arvutamiseks
         $count_stmt = mysqli_prepare($yhendus, "SELECT COUNT(*) as total FROM cars WHERE mark LIKE ?");
         mysqli_stmt_bind_param($count_stmt, "s", $otsing);
         mysqli_stmt_execute($count_stmt);
         $count_res = mysqli_stmt_get_result($count_stmt);
+        if (!$count_res) {
+            die("Andmebaasi viga autode otsingu koguarvu päringul: " . mysqli_error($yhendus));
+        }
         $total_rows = mysqli_fetch_assoc($count_res)['total'];
     } else {
         $paring = "SELECT * FROM cars LIMIT $limit OFFSET $offset";
         $valjund = mysqli_query($yhendus, $paring);
+        if (!$valjund) {
+            die("Andmebaasi viga autode päringul: " . mysqli_error($yhendus));
+        }
 
         $count_res = mysqli_query($yhendus, "SELECT COUNT(*) as total FROM cars");
+        if (!$count_res) {
+            die("Andmebaasi viga autode koguarvu päringul: " . mysqli_error($yhendus));
+        }
         $total_rows = mysqli_fetch_assoc($count_res)['total'];
     }
     $total_pages = ceil($total_rows / $limit);

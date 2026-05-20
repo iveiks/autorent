@@ -42,6 +42,9 @@ Autorent on PHP ja MySQL baasil ehitatud veebipõhine autorendiplatvorm. Rakendu
     docker-compose up -d
     ```
 
+4.  **Kasutamine**:
+    Rakendus on kättesaadav aadressil: http://localhost:8080
+
 ## 🔑 Sisselogimisandmed
 
 Administraatori paneelile pääsemiseks kasuta järgmisi andmeid:
