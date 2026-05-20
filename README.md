@@ -33,8 +33,7 @@ Autorent on PHP ja MySQL baasil ehitatud veebipõhine autorendiplatvorm. Rakendu
     ```
 
 2.  **Andmebaasi seadistamine**:
-    *   Impordi `db/cars_rent.sql` fail oma MySQL/MariaDB serverisse.
-    *   Uuenda `config.php` failis andmebaasi ühenduse andmed.
+    *   Dockeri kasutamisel luuakse andmebaas ja tabelid automaatselt failist `db/cars_rent.sql`.
 
 3.  **Docker (Valikuline)**:
     Kui kasutad Dockerit, siis käivita:
@@ -43,7 +42,7 @@ Autorent on PHP ja MySQL baasil ehitatud veebipõhine autorendiplatvorm. Rakendu
     ```
 
 4.  **Kasutamine**:
-    Rakendus on kättesaadav aadressil: http://localhost:8080
+    Rakendus on kättesaadav aadressil: [http://localhost:8080](http://localhost:8080). Esimene käivitus võib võtta kuni 30 sekundit, kuni andmebaas initsialiseeritakse.
 
 ## 🔑 Sisselogimisandmed
 
